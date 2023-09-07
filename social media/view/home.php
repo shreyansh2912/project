@@ -54,7 +54,7 @@
                       <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
                       <li><a href="#"><i class="ion-map"></i></a></li>
                     </ul>
-                    <button class="btn btn-primary pull-right">Publish</button>
+                    <button class="btn btn-primary pull-right" name="publish" >Publish</button>
                   </div>
                 </div>
             	</div>

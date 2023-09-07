@@ -45,13 +45,13 @@
             <td><?php echo $value->name ?></td>
             <td><?php echo $value->email ?></td>
             <td><?php echo $value->username ?></td>
-            <td><img src="../<?php echo $value->image ?>" alt="No Profile Picture Found" height="100px" width="100px"></td>
+            <td><img src="../<?php echo $value->image ?>" alt="No Profile Picture Found" height="100px" width="500000px"></td>
             <td><?php echo $value->password ?></td>
             <td><?php echo $value->role_as ?></td>
             <td>
 
 
-              <form action="update-user" method="post">
+              <form action="admin_update" method="post">
                 <button class="btn-primary btn-sm" name="update_btn" value="<?php echo $value->id; ?>">Update</button>
               </form>
               <form action="" method="post">

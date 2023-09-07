@@ -16,6 +16,25 @@ public function __construct()
             switch($_SERVER['PATH_INFO'])
             {
                     case "/home":
+                        
+                     if(isset($_REQUEST['add']))
+                            {
+                                echo "<pre>";
+                                print_r($_REQUEST);
+                                print_r($_FILES);
+                                echo "</pre>";
+
+                                $image = "uploads/posts/".time().$_FILES['image']["name"];
+                                move_uploaded_file($_FILES['image']['tmp_name'],$image);
+
+                                $data = array(
+                                    "description" => $_REQUEST['description'],
+                                    "image" => $image
+                                );
+
+                                    $this->insert("posts",$data);
+                              }     
+
                         require_once("view/header.php");
                         require_once("view/home.php");
                         require_once("view/footer.php");
@@ -158,25 +177,64 @@ public function __construct()
                         break;
                         
                      case "/admin_update":   
-
-                        // if(isset($_REQUEST['update_btn']))
+                        
+                        if(isset($_REQUEST['update_btn']))
                         {
                             echo "<pre>";
-                            print_r($_REQUEST);
-                            print_r($_FILES);
-                           //  $response = $this->update("register", $_REQUEST["update"]);
-                           // $response = $this->update("register", $_REQUEST["update"] , $data); 
-                           //  print_r($response);
+                            // print_r($_REQUEST);
+                            // print_r($_FILES);
+                            $response = $this->selectwhere("register",$_REQUEST["update_btn"]);
+                            // print_r($response);
                             echo "</pre>";
                             // exit;
                             require_once("view/admin_header.php"); 
                             require_once("view/admin_update.php");
-                           //  require_once("view/admin_footer.php");    
+                            require_once("view/admin_footer.php");   
+                            
                         }
-
-
-                        
+                        else if(isset($_REQUEST["update"]))
+                        {
+                           
+                            if($_FILES['image']['error'] == UPLOAD_ERR_OK  )
+                            {
+                                $image = "uploads/".time().$_FILES['image']["name"];
+                                move_uploaded_file($_FILES['image']['tmp_name'],$image);
+                            }
+                            else
+                            {
+                               $image = $_REQUEST["old_profile_pic"];
+                            }
+ 
+                            // exit();
+                            $data = array(
+                                "name"=>$_REQUEST["name"],
+                                "email"=>$_REQUEST["email"],
+                                "password"=>$_REQUEST["password"],
+                                "username"=>$_REQUEST["username"],
+                                "image" => $image 
+                            );
+                            $response =$this->update("register",$data ,$_REQUEST["update"]);
+                            echo $response;
+                            header("location:admin_update");    
+                        }
+                        else
+                        {
+                            header("location:alluser");
+                        }                        
                         break;
+
+                        case "/api":
+                           echo "<h1> Welcome to class of making api</h1>";
+                           $users = $this->select("register");
+                           $apiresponse = json_encode($users);
+                           $decode = json_decode($apiresponse);
+                           echo"<pre>";
+                           print_r( $users);
+                           print_r( $decode);
+                           echo"</pre>";
+                           print_r( $apiresponse);
+                           break;
+   
                      
                      // default : 
                      //       require_once("view/header.php");

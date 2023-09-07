@@ -18,6 +18,38 @@ class model
             // echo "Connection was not successful";
         }
     }
+
+    public function insert($tbl,$data)
+    {
+
+        
+
+        // array_pop($data);
+        
+        $keysdata = array_keys($data);
+        $valuesdata = array_values($data);
+
+        $keysdata = implode(",",$keysdata);
+        $valuesdata = implode("','",$valuesdata);
+
+        echo "<pre>";
+        // print_r($keysdata);
+        echo "<br>";
+        // print_r($valuesdata);
+        echo "<br>";
+
+
+            $sql = "INSERT INTO $tbl ($keysdata) VALUES ('$valuesdata')";
+            echo $sql;
+            // $sql2 = "INSERT INTO users (name,username,email,password) VALUES ('$data[name]','$data[username]','$data[email]','$data[password]')";
+            // echo $sql2;
+            $this->connection->query($sql);
+            header("location:products");
+        // print_r(array_keys($data));
+        // print_r(array_values($data));
+        // print_r($data);
+        echo "</pre>";
+    } 
     
     public function update($tbl,$values,$id)
     {
@@ -44,6 +76,28 @@ class model
         }
         return $data;
     }
+
+    public function selectwhere($tbl,$id)
+{
+    $SQL = "SELECT * FROM $tbl WHERE id = $id";
+    // echo $SQL;
+    $sqlex = $this->connection->query($SQL);
+    // exit;
+    if($sqlex->num_rows > 0)
+    {
+        $data = $sqlex->fetch_object();
+        // print_r($data);
+        // exit;
+    }
+    else 
+    {
+        $data = "Something Went Wrong";
+        // return $data;
+    }
+    return $data;
+    // print_r($sqlex);
+    // exit;
+}
 
     public function delete($table,$id)
     {
