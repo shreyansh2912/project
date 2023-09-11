@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>friend-finder Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>assets/vendors/css/vendor.bundle.base.css">
@@ -82,11 +82,19 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="alluser">
+            <a class="nav-link" href="admin_dashboard">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
               <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="alluser">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+              <span class="menu-title">All users</span>
             </a>
           </li>
         </ul>
