@@ -14,6 +14,7 @@
 </head>
 <body>
     <!-- Sing in  Form -->
+    <div class="main">
     <section class="sign-in">
             <div class="container">
                 <div class="signin-content">
@@ -52,9 +53,9 @@
                     </div>
                 </div>
             </div>
+        </div>
         </section>
 
-    </div>
 
     <!-- JS -->
     <script src="<?php echo $this->baseurl;?>vendor/jquery/jquery.min.js"></script>
